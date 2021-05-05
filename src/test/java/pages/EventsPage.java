@@ -34,7 +34,7 @@ public class EventsPage extends BasePage {
 
 
 
-    //Метод возвращает число отображенных карточек предстоящих мероприятий
+    //Метод возвращает число отображенных карточек мероприятий
     @Step("Получение числа карточек мероприятий")
     public int getEventsCardsCount() {
         return eventsCards.size();

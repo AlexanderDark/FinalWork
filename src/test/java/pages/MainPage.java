@@ -14,7 +14,7 @@ public class MainPage extends BasePage {
     private final SelenideElement choiceLang = $x("//a[contains(text(), 'Eng')]");
     private final String epamLink = "https://events.epam.com";
     private final SelenideElement eventsLink = $(".events-icon");
-    private final SelenideElement videoLink = $("li.talks-library-icon a");
+    private final SelenideElement videoLink = $("li.talks-library-icon");
     private final SelenideElement acceptCookies = $("button#onetrust-accept-btn-handler");
 
     @Step("Переключение языка на Eng")
@@ -42,7 +42,7 @@ public class MainPage extends BasePage {
     }
 
     @Step("Клик на меню Video")
-    public MainPage clickVideoLink() {
+    public MainPage clickVideo() {
         videoLink.click();
         logger.info("Нажата ссылка 'Video' в верхнем меню");
 

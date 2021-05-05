@@ -1,9 +1,12 @@
 package tests;
 
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.Hooks;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @DisplayName("Тесты на раздел Video")
 public class TalksLibraryTest extends Hooks {
@@ -14,28 +17,25 @@ public class TalksLibraryTest extends Hooks {
         mainPage
                 .goToEpam()
                 .selectLang()
-                .clickVideoLink();
+                .clickVideo();
         talksLibraryPage
-                .clickMoreFiltersLink()
+                .clickMoreFilters()
                 .clickCategoryFilter()
                 .selectCategoryTesting()
                 .clickLocationFilter()
                 .selectLocationBelarus()
                 .clickLanguageFilter()
                 .selectLanguageEnglish();
-
-        softAssertions.assertThat(talksLibraryPage.getFilterTagsCountByText("Testing"))
-                .isNotEqualTo(0);
-        softAssertions.assertThat(talksLibraryPage.getFilterTagsCountByText("Belarus"))
-                .isNotEqualTo(0);
-        softAssertions.assertThat(talksLibraryPage.getFilterTagsCountByText("ENGLISH"))
-                .isNotEqualTo(0);
-
-        for (int i = 0; i < talksLibraryPage.getEventsCardsCount(); i++) {
-            softAssertions.assertThat(talksLibraryPage.getCardLanguageByNumber(i))
-                    .isEqualTo("En");
+        int j = talksLibraryPage.getFilteredCardsCount();
+        String currentUrl = getWebDriver().getCurrentUrl();
+        for (int i = 0; i < j-1; i++) {
+            talksLibraryPage
+                    .openUrl(currentUrl)
+                    .clickOnFilteredCard(i);
+            Assertions.assertEquals(talksLibraryPage.getLanguageInFilteredCard(),"ENGLISH");
+            Assertions.assertTrue(talksLibraryPage.getLocationInFilteredCard().contains("Belarus"));
+            Assertions.assertTrue(talksLibraryPage.checkTagTesting());
         }
-        softAssertions.assertAll();
     }
 
     @Test
@@ -47,7 +47,7 @@ public class TalksLibraryTest extends Hooks {
         mainPage
                 .goToEpam()
                 .selectLang()
-                .clickVideoLink();
+                .clickVideo();
         talksLibraryPage.enterTextToSearchField(textForSearch);
 
 
