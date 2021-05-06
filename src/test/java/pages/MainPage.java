@@ -1,8 +1,6 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import io.qameta.allure.Step;
 
 import java.net.URL;
@@ -34,7 +32,8 @@ public class MainPage extends BasePage {
 
     @Step("Переход на сайт EPAM")
     public MainPage goToEpam() {
-        Selenide.open(epamLink);
+
+        open(epamLink);
         acceptCookies
                 .shouldBe(Condition.visible)
                 .click();

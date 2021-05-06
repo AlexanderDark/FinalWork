@@ -20,6 +20,7 @@ public class Driver {
         Configuration.downloadsFolder = "target/downloads";
         Configuration.baseUrl = "https://events.epam.com/";
 
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         switch (browserName) {

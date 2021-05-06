@@ -13,7 +13,7 @@ public class TalksLibraryTest extends Hooks {
     @Test
     @DisplayName("Проверка фильтрации на странице Talks Library")
     @Description("Тест задает фильтры Category, Location, Language и проверяет теги и язык в найденных карточках")
-    public void videoFiltersTest() {
+    public void videoFiltersTest() throws InterruptedException {
         mainPage
                 .goToEpam()
                 .selectLang()
@@ -26,9 +26,9 @@ public class TalksLibraryTest extends Hooks {
                 .selectLocationBelarus()
                 .clickLanguageFilter()
                 .selectLanguageEnglish();
-        int j = talksLibraryPage.getFilteredCardsCount();
         String currentUrl = getWebDriver().getCurrentUrl();
-        for (int i = 0; i < j-1; i++) {
+
+        for (int i = 0; i < talksLibraryPage.getFilteredCardsCount()-1; i++) {
             talksLibraryPage
                     .openUrl(currentUrl)
                     .clickOnFilteredCard(i);
@@ -40,22 +40,17 @@ public class TalksLibraryTest extends Hooks {
 
     @Test
     @DisplayName("Проверка поиска на странице Talks Library")
-    @Description("Тест вводит ключевые слова в строку поиска и проверяет их отображение в найденных карточках")
-    public void searchVideosTest() {
-        String textForSearch = "QA";
-
+    @Description("Тест вводит слово  QA в строку поиска и проверяет отображение карточек мероприятий соответствующих поиску")
+    public void searchFieldTest() throws InterruptedException {
         mainPage
                 .goToEpam()
                 .selectLang()
                 .clickVideo();
-        talksLibraryPage.enterTextToSearchField(textForSearch);
+        talksLibraryPage.enterQATextToSearchField();
 
-
-        for (int i = 0; i < talksLibraryPage.getEventsCardsCount(); i++) {
-            softAssertions.assertThat(talksLibraryPage.getCardTitleByNumber(i))
-                    .contains(textForSearch);
+      for (int i = 0; i < talksLibraryPage.getFilteredCardsCount(); i++) {
+            Assertions.assertTrue(talksLibraryPage.getTitleOfCard(i).contains("QA"));
         }
-        softAssertions.assertAll();
     }
 
 }

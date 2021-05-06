@@ -15,7 +15,6 @@ public class Hooks {
     protected MainPage mainPage = new MainPage();
     protected EventsPage eventsPage = new EventsPage();
     protected TalksLibraryPage talksLibraryPage = new TalksLibraryPage();
-    protected SoftAssertions softAssertions = new SoftAssertions();
 
 
 
