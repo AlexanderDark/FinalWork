@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateParcer {
+public class DateParser {
     public Date parcerDate (String stringDate) {
 
         int placeOfDash = 0;

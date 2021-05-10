@@ -2,11 +2,11 @@ package pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import utils.DateParcer;
+import utils.DateParser;
 
 public class BasePage {
     protected Logger logger;
-    protected DateParcer dateParcer = new DateParcer();
+    protected DateParser dateParcer = new DateParser();
     public BasePage() {
         logger = LogManager.getLogger(BasePage.class);
     }

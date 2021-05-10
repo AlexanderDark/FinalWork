@@ -5,11 +5,14 @@ import io.qameta.allure.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import utils.Hooks;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @DisplayName("Тесты на раздел Video")
 public class TalksLibraryTest extends Hooks {
+
     @Test
     @DisplayName("Проверка фильтрации на странице Talks Library")
     @Description("Тест задает фильтры Category, Location, Language и проверяет теги и язык в найденных карточках")
