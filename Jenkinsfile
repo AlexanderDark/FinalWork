@@ -27,6 +27,8 @@ pipeline {
         stage('Run maven clean test') {
             steps {
                 sh 'mvn clean test -Dbrowser=$BROWSER_NAME'
+                slackSend(message: "Notification from Jenkins Pipeline Start job '${env.JOB_NAME}' from repo '${params.GIT_URL}'")
+
             }
         }
         stage('Backup and Reports') {
