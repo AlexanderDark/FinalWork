@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'M3.8.1'
+        maven 'Maven'
     }
 
     triggers {
